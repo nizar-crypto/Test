@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>QUESTION HERE</h1>
+    <details>
+      <summary>Click here for the answer</summary>
+      <p>ANSWER HERE</p>
+    </details>
+  </body>
+  <script>
+    const challenges = [
+      {
+        question: "What does DOM stand for?",
+        answer: "DOM stands for Document Object Model",
+      },
+      {
+        question: "How argument do you pass to document.querySelector()?",
+        answer: "A CSS selector like h1, .myClass or #someId",
+      },
+      {
+        question: "Why do people put JavaScript into their web pages",
+        answer: "To make the pages dynamic & interactive",
+      },
+      {
+        question: "How do you update an existing HTML element",
+        answer: "1. Select it from the DOM, 2. Update the underlying object",
+      },
+    ];
+    const randomIndex = Math.floor(Math.random() * challenges.length); // 0, 1, 2 or 3
+
+    const challenge = challenges[randomIndex];
+    // Making the app
+    // Step 1: Make a data model (object)
+    // Step 2: Make HTML structure
+    // Step 3:
+    // - X Take the data from the challenge object,
+    // - X Update the page with it
+    // Step 4: Make the data dynamic
+    // - X Create an array of objects (challenges)
+    // - X Take a random element from the array
+    // - X Now run the rest of the script! 🎊
+
+    console.log("QUESTION:", challenge.question, "ANSWER", challenge.answer);
+
+    // Update
+    // 1. Select the element you want to update
+    const questionElement = document.querySelector("h1");
+    console.log("ELEMENT?", questionElement);
+    // 2. Update the content of the element
+    questionElement.innerText = challenge.question;
+
+    // 1.
+    const answerElement = document.querySelector("p");
+    console.log("PARAGRAPH?", answerElement);
+    // 2.
+    answerElement.innerText = challenge.answer;
+  </script>
+</html>

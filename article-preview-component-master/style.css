@@ -1,0 +1,122 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap"); */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* {
+  border: 1px solid red;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+body {
+  background: hsl(210, 46%, 95%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.preview {
+  width: 1000px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 10px 10px 31px -12px rgba(0, 0, 0, 0.59);
+  -webkit-box-shadow: 10px 10px 31px -12px rgba(0, 0, 0, 0.59);
+}
+
+.left-preview {
+  width: 450px;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.left-preview-image {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.right-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 550px;
+  font-size: 17px;
+  padding: 40px;
+  font-family: "Manrope", sans-serif;
+}
+
+.heading-text {
+  color: hsl(217, 19%, 35%);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.sub-text {
+  line-height: 22px;
+  padding-bottom: 10px;
+}
+
+.author {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5%;
+}
+
+.michelle-img {
+  width: 40px;
+  /* display: flex;
+  justify-content: space-between; */
+  border-radius: 100px;
+}
+.share {
+  border-radius: 100px;
+  background-color: white;
+  padding: 8px;
+  display: inline;
+  cursor: pointer;
+  color: white;
+  background-color: hsl(210, 46%, 95%);
+}
+
+.popup {
+  padding: 10px 20px;
+  width: 250px;
+  background-color: hsl(217, 19%, 35%);
+  color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  justify-content: space-evenly;
+  position: absolute;
+  /* top: -60px; */
+  bottom: 60px;
+  left: -100px;
+}
+
+.button {
+  position: relative;
+}
+.profile {
+  display: flex;
+  flex-direction: row;
+}
+.name {
+  padding-left: 10px;
+}

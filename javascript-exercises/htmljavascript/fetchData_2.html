@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    async function indiaNews() {
+
+        const news = await fetch("https://inshortsapi.vercel.app/news?category=all")
+        // console.log("the News", news);
+        const data = await news.json()
+        console.log("array of objects", data.data);
+        for (let index = 0; index < data.data.length; index++) {
+            const newsData = data.data[index];
+
+            const newsElement = document.createElement("h1")
+            newsElement.innerText = data.data[index].content
+            const body = document.querySelector("body")
+            body.appendChild(newsElement)
+        }
+        // console.log("Data", data);
+        // console.log("content of news", data.data[0].content);
+
+    }
+    indiaNews()
+
+</script>
+
+</html>

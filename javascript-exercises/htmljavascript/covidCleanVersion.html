@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .content {
+            height: 300px;
+            width: 150px;
+            background-color: rgb(144, 95, 179);
+            line-height: 25px;
+
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p>COVID TRACKER</p>
+
+
+        <div class="content">
+            <p class="confirmed"> </p>
+
+        </div>
+        <div class="flags">
+
+            <!-- 
+            <img class="flag" id="Netherlands"
+                src="https://th.bing.com/th?q=Netherlands+National+Flag&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=nl-NL&adlt=moderate&t=1&mw=247"
+                alt=""><br>
+
+            <img class="flag" id="France"
+                src="https://th.bing.com/th?q=France+Flag+Icon&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=nl-NL&adlt=moderate&t=1&mw=247"
+                alt=""><br>
+
+            <img class="flag" id="Germany"
+                src="https://th.bing.com/th?q=Flag+of+Germany&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=nl-NL&adlt=moderate&t=1&mw=247"
+                alt=""><br>
+
+            <img class="flag" id="US"
+                src="https://th.bing.com/th?q=Stars+On+USA+Flag&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=nl-NL&adlt=moderate&t=1&mw=247"
+                alt=""><br>
+
+            <img class="flag" id="United Kingdom"
+                src="https://th.bing.com/th?q=Flag+of+the+United+Kingdom&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=nl-NL&adlt=moderate&t=1&mw=247"
+                alt=""><br> -->
+        </div>
+    </div>
+
+
+</body>
+<script>
+    async function covidCountry(country) {
+        const response = await fetch(`https://covid-api.mmediagroup.fr/v1/cases?country=${country}`)
+        const data = await response.json()
+        const confirmedElement = document.querySelector(".confirmed")
+        confirmedElement.innerText =
+            `confirmed ${data.All.confirmed}\n  recovered:${data.All.recovered}\n Death:${data.All.deaths} \n country:${data.All.abbreviation} \n poulation: ${data.All.population}`
+    }
+
+    // const flags = document.querySelectorAll(".flag")
+    // for (let index = 0; index < flags.length; index++) {
+    //     const flag = flags[index];
+    //     flag.addEventListener("click", () => covidCountry(flag.id))
+    // }
+
+    // 1- fetch countries from API
+    // https://restcountries.com/v3.1/all
+    // 2- loop over the countries and create an image element
+    // 3- set the src of the image to url(of data)
+    // 4- add an event listener to the flag
+    // 5- append the flag to the document
+
+    async function countries() {
+
+        const response = await fetch("https://restcountries.com/v3.1/all")
+        const countries = await response.json()
+        for (let index = 0; index < countries.length; index++) {
+            const country = countries[index];
+            console.log("country ", country.name.common);
+
+            console.log("check country flags data", response);
+
+            const flagImage = document.createElement("img")
+            // console.log("check flag image", flagImage);
+
+            console.log("check directory", countries[index].flags.png);
+            flagImage.src = countries[index].flags.png
+            flagImage.style.width = "40px"
+            const body = document.querySelector("body");
+            // console.log("body", body);
+            body.appendChild(flagImage);
+            // flag.addEventListener("click", () => covidCountry(flag.id))
+            flagImage.addEventListener("click", () => covidCountry(country.name.common))
+
+        }
+
+
+    }
+
+
+
+    // for (let index = 0; index < data[index].flags.length; index++) {
+    //     const flag = data[index].flags[index];
+
+    // }
+    // const allFlags = document.querySelector(".flags");
+    // allFlags.addEventListener("click", countries)
+
+    countries()
+
+
+
+
+
+</script>
+
+</html>

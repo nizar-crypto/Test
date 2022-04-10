@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .content {
+            height: 300px;
+            width: 150px;
+            background-color: rgb(144, 95, 179);
+            line-height: 25px;
+
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p>COVID TRACKER</p>
+
+
+        <div class="content">
+            <p class="confirmed"> </p>
+
+        </div>
+        <div class="flags">
+
+
+            <img class="nederland"
+                src="https://th.bing.com/th?q=Netherlands+National+Flag&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=nl-NL&adlt=moderate&t=1&mw=247"
+                alt=""><br>
+
+            <img class="france"
+                src="https://th.bing.com/th?q=France+Flag+Icon&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=nl-NL&adlt=moderate&t=1&mw=247"
+                alt=""><br>
+
+            <img class="germany"
+                src="https://th.bing.com/th?q=Flag+of+Germany&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=nl-NL&adlt=moderate&t=1&mw=247"
+                alt=""><br>
+
+            <img class="america"
+                src="https://th.bing.com/th?q=Stars+On+USA+Flag&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=nl-NL&adlt=moderate&t=1&mw=247"
+                alt=""><br>
+
+            <img class="uk"
+                src="https://th.bing.com/th?q=Flag+of+the+United+Kingdom&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=nl-NL&adlt=moderate&t=1&mw=247"
+                alt=""><br>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    async function covidNederland() {
+        // // console.log("Get number here :");
+        const response = await fetch("https://covid-api.mmediagroup.fr/v1/cases?country=Netherlands")//${}
+        const data = await response.json()
+        // // console.log("testing the Netherlands", data.All);
+        const confirmedElement = document.querySelector(".confirmed")
+        // console.log("check container", countryElement);
+        // console.log("check inner", countryElement.innerText, "data", data.All);.
+        confirmedElement.innerText = `confirmed ${data.All.confirmed}\n  recovered:${data.All.recovered}\n Death:${data.All.deaths} \n country:${data.All.abbreviation} \n poulation: ${data.All.population}`
+
+    }
+    // covidNederland()
+    const nederlandFlag = document.querySelector(".nederland");
+    nederlandFlag.addEventListener("click", covidNederland)
+
+    async function covidFrance() {
+        console.log("Get number here :");
+        const response = await fetch("https://covid-api.mmediagroup.fr/v1/cases?country=france")//${}
+        const data = await response.json()
+        // console.log("testing the France", data.France);
+        const confirmedElement = document.querySelector(".confirmed")
+        // console.log("country", countryElement.innerText, "data", data);
+        console.log("FRANCE DATA", data.France.All.confirmed);
+        confirmedElement.innerText =
+            `confirmed ${data.France.All.confirmed}\n  recovered:${data.France.All.recovered}\n Death:${data.France.All.deaths} \n country:${data.France.All.abbreviation} \n poulation: ${data.France.All.population}`
+    }
+    // covidFrance()
+    const franceFlag = document.querySelector(".france");
+    franceFlag.addEventListener("click", covidFrance)
+
+
+
+    async function covidGermany() {
+        // console.log("Get number here :");
+        const response = await fetch("https://covid-api.mmediagroup.fr/v1/cases?country=Germany")//${}
+        const data = await response.json()
+        console.log("testing the Germany", data.All.confirmed);
+        const confirmedElement = document.querySelector(".confirmed")
+        confirmedElement.innerText = `confirmed ${data.All.confirmed}\n  recovered:${data.All.recovered}\n Death:${data.All.deaths} \n country:${data.All.abbreviation} \n poulation: ${data.All.population}`
+
+
+    }
+    // covidGermany()
+    const germanyFlag = document.querySelector(".germany");
+    germanyFlag.addEventListener("click", covidGermany)
+
+
+    async function covidUK() {
+        // console.log("Get number here :");
+        const response = await fetch("https://covid-api.mmediagroup.fr/v1/cases?country=United Kingdom")//${}
+        const data = await response.json()
+        // console.log("testing the  United Kingdom", data.All);
+        const confirmedElement = document.querySelector(".confirmed")
+        console.log("UK check", data.All);
+        confirmedElement.innerText = `confirmed ${data.All.confirmed}\n  recovered:${data.All.recovered}\n Death:${data.All.deaths} \n country:${data.All.abbreviation} \n poulation: ${data.All.population}`
+
+    }
+    // covidUK()
+    const ukFlag = document.querySelector(".uk");
+    ukFlag.addEventListener("click", covidUK)
+
+    async function covidAmerica() {
+        // console.log("Get number here :");
+        const response = await fetch("https://covid-api.mmediagroup.fr/v1/cases?country=North America")
+        const data = await response.json()
+        // console.log("testing the  North America", data.All);
+        const confirmedElement = document.querySelector(".confirmed")
+        console.log("check USA", data.US.All.confirmed);
+        confirmedElement.innerText = `confirmed ${data.US.All.confirmed}\n  recovered:${data.US.All.recovered}\n Death:${data.US.All.deaths} \n country:${data.US.All.abbreviation} \n poulation: ${data.US.All.population}`
+
+    }
+    // covidAmerica()
+    const americaFlag = document.querySelector(".america");
+    americaFlag.addEventListener("click", covidAmerica)
+
+
+
+
+
+
+
+</script>
+
+</html>

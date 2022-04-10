@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <button>Search</button>
+
+</body>
+<script>
+    function clearAdvice() {
+        const paragraphs = document.querySelectorAll("p");
+
+        paragraphs.forEach((paragraphElement) => {
+            paragraphElement.remove();
+        });
+    }
+    async function getCountry() {
+        clearAdvice()
+        console.log("get country here");
+        const inputElement = document.querySelector("input")
+        console.log("USER input", inputElement.value);
+
+        const response = await fetch(
+            `https://restcountries.com/v2/name/${inputElement.value}`
+        )
+        const data = await response.json()
+        console.log("country result", data);
+        for (let index = 0; index < data.length; index++) {
+
+            const countryElement = document.createElement("p");
+            countryElement.innerText = `name: ${data[index].name} , native name: ${data[index].nativeName} , numericCode: ${data[index].numericCode}, capital:${data[index].capital},
+    cioc: ${data[index].cioc} `;
+            document.querySelector("body").appendChild(countryElement)
+        }
+
+
+    }
+
+    const button = document.querySelector("button");
+    button.addEventListener("click", getCountry)
+
+</script>
+
+</html>

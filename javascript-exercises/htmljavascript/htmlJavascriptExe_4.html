@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Profile</h1>
+  <div>
+    <h2>Name</h2>
+    <h3>--insert name here with JS--</h3>
+  </div>
+  <div>
+    <h2>Hobby</h2>
+    <h3 class="hobby"></h3>
+  </div>
+  <div>
+    <h2>Picture</h2>
+    <img src="" alt="" />
+  </div>
+</body>
+<script>
+  const user = {
+    name: "Rein",
+    hobby: "Programming",
+    imageUrl: "https://avatars.githubusercontent.com/u/20372832?v=4",
+  };
+  const reinElement = document.querySelector("h3");
+  console.log("ELEMENT?", reinElement);
+  reinElement.innerText = user.name;
+
+  const reinHobby = document.querySelector(".hobby")//(".hobby")
+  reinHobby.innerText = user.hobby
+  const reinPhoto = document.querySelector("img")
+  reinPhoto.src = user.imageUrl
+  reinPhoto.alt = user.name
+
+    // JS here...
+</script>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    async function getAdvice() {
+        const advice = await fetch("https://api.adviceslip.com/advice")
+        // console.log("fetch advices", advice);
+        const data = await advice.json()
+        // console.log("here is the data", data);
+        // console.log("data slip", data.slip);
+        // console.log("only the text", data.slip);
+        console.log("the advice text", data.slip.advice);
+        const adviceElement = document.createElement("h1")
+        adviceElement.innerText = data.slip.advice
+        const body = document.querySelector("body")
+        console.log("answer", body);
+        body.appendChild(adviceElement)
+
+
+    }
+
+    getAdvice()
+
+    // const advice = document.createElement("h1")
+    // console.log("create element", advice);
+    // // advice.innerText =
+
+
+
+
+
+
+
+</script>
+
+</html>

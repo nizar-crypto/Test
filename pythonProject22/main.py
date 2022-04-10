@@ -1,0 +1,2 @@
+print("nazo")
+:<> (cinn)

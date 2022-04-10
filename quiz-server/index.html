@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link type="css" rel="stylesheet" href="src/node_modules/bootstrap/dist/css/bootstrap.css" crossorigin="anonymous">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <button>Get a question</button>
+
+
+
+
+
+
+</body>
+<script>
+    async function getquestion() {
+        console.log("get a question");
+
+
+        const response = await fetch(
+            "http://localhost:3000/questions/random",
+            { method: "Get", headers: { "Content-Type": "application/json", "X-Master-Key": "" } })
+        const data = await response.json()
+        console.log("check data", data);
+        const displayQuestion = document.createElement("h1")
+        displayQuestion.innerText = data.question
+        console.log("check displayed question", data.question);
+        const body = document.querySelector("body")
+        body.appendChild(displayQuestion)
+
+        const keys = Object.keys(data.answers)//get an array of keys for this object then we loop over the keys
+        console.log("check keys", keys);
+
+
+        for (let index = 0; index < keys.length; index++) {
+            const key = keys[index];
+            console.log("check key", key, data.answers[key]);
+            //         const addButton = document.querySelector(".plusButton");
+            // addButton.addEventListener("click", increment);
+            // 1.find the element you want to add event listener to X
+            // 2-add an event listener with the event type and function
+            // 3-write the funtion to be added later to the event
+
+            const displayAnswer = document.createElement("h3")
+            displayAnswer.innerText = data.answers[key]
+            console.log("check displayed answers", data.answers);
+            body.appendChild(displayAnswer)
+            displayAnswer.addEventListener("click", async () => {
+                console.log("check click", key, data.id);//here we know the id of the question
+                //here we should post the correct answer after the user click
+
+                // const response = await fetch(`https://api.jsonbin.io/v3/b`,
+                //         { method: "post", headers: { "Content-Type": "application/json", "X-Master-Key": "$2b$10$bwU5Ev4g61K0CcWTkG5e3uAt5CHBihEk3Y0B8SFCiJfsC3y9FengC" }, body: JSON.stringify({ name: `${inputElement.value}` }), })
+                const response = await fetch(`http://localhost:3000/questions/${data.id}/checkanswer`,
+                    {
+                        method: "post", headers: { "Content-Type": "application/json", "X-Master-Key": "" }, body: JSON.stringify({ answer: `${key}` })//here we use key not data A B C and D
+
+                    })
+                console.log("check post response", response);
+                const feedback = await response.json()
+                console.log("check feedback", feedback);
+                if (feedback.answerCorrect === true) {
+                    console.log("check correct");
+                    displayAnswer.style.color = "green"
+                } else {
+                    console.log("Not correct");
+                    displayAnswer.style.color = "red"
+                }
+            })
+
+        }
+
+
+
+
+        // const displayAnswerB = document.createElement("h3")
+        // displayAnswerB.innerText = data.answers.B
+        // console.log("check displayed answers", data.answers);
+        // // const body = document.querySelector("body")
+        // body.appendChild(displayAnswerB)
+
+        // const displayAnswerC = document.createElement("h3")
+        // displayAnswerC.innerText = data.answers.C
+        // console.log("check displayed answers", data.answers);
+        // // const body = document.querySelector("body")
+        // body.appendChild(displayAnswerC)
+
+        // const displayAnswerD = document.createElement("h3")
+        // displayAnswerD.innerText = data.answers.D
+        // console.log("check displayed answers", data.answers);
+        // // const body = document.querySelector("body")
+        // body.appendChild(displayAnswerD)
+
+
+
+
+
+    }
+    const Button = document.querySelector("button");
+    Button.addEventListener("click", getquestion)
+
+
+
+    getquestion()
+
+
+
+</script>
+
+</html>

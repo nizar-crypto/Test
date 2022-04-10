@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <label for="question">Question:</label>
+        <input type="text" name="question" id="question" class="post-question"><br>
+        <label for="choiceA">A:</label>
+        <input type="text" name="choiceA" id="choiceA" placeholder="type an answer here" class="answer-a"> <br>
+        <label for="choiceB">B:</label>
+        <input type="text" name="choiceB" id="choiceB" placeholder="B" class="answer-b"> <br>
+        <label for="choiceC">C:</label>
+        <input type="text" name="choiceC" id="choiceC" placeholder="C" class="answer-c"> <br>
+        <label for="choiceD">D:</label>
+        <input type="text" name="choiceD" id="choiceD" placeholder="D" class="answer-d"> <br>
+        <label for="correctAnswer">Correct answer:</label>
+        <select name="correctAnswer" id="correctAnswer" class="correct-answer">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+        </select>
+        <!-- <input type="text" name="correctAnswer" id="correctAnswer" placeholder="correctAnswer" class="correct-answer"> -->
+        <button class="create-question">post your question</button>
+    </form>
+</body>
+<script>
+    async function postQuestion(event) {
+        event.preventDefault()//here we add event as a parameter to prevent default ,not to get html as a response, which default behaviour will make refresh which we don't
+        const inputElement = document.querySelector(".post-question")
+        const inputElementAnswerA = document.querySelector(".answer-a")
+        console.log("answer a", inputElementAnswerA.value);
+        const inputElementAnswerB = document.querySelector(".answer-b")
+        console.log("answer b", inputElementAnswerB.value);
+        const inputElementAnswerC = document.querySelector(".answer-c")
+        console.log("answer c", inputElementAnswerC.value);
+        const inputElementAnswerD = document.querySelector(".answer-d")
+        console.log("answer d", inputElementAnswerD);
+        const inputElementcorrectAnswer = document.querySelector(".correct-answer")
+        console.log("check correct answer", inputElementcorrectAnswer);
+
+        const response = await fetch(
+            "http://localhost:3000/questions",
+            {
+                method: "post", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+                    question: `${inputElement.value}`,
+                    answers: {
+                        A: inputElementAnswerA.value,
+                        B: inputElementAnswerB.value,
+                        C: inputElementAnswerC.value,
+                        D: inputElementAnswerD.value
+
+                    },
+
+                    correctAnswer: inputElementcorrectAnswer.value
+
+                }),
+            })
+        //                  {
+        //     "question": "Which country has the tallest people in the world?",
+        //     "answers": {
+        //       "A": "France",
+        //       "B": "The Netherland",
+        //       "C": "USA",
+        //       "D": "Germany"
+        //       },
+        //       "correctAnswer": "B"
+        //   }
+        console.log("check response", response);
+        const data = await response.json()
+        console.log("check data", data);
+    }
+
+    const button = document.querySelector(".create-question");
+    button.addEventListener("click", postQuestion)
+
+
+
+</script>
+
+</html>

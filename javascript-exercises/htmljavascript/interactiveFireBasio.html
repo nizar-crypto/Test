@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>The hackers stories and news</h1>
+    <h2></h2>
+    <p></p>
+    <button class="plusButton">+</button>
+    <button class="minusButton">-</button>
+
+</body>
+<script>
+    let counter = 1
+    async function hackerNews() {
+        const response = await fetch("https://hacker-news.firebaseio.com/v0/maxitem.json?print=pretty")
+        const data = await response.json()
+        console.log("Hacker news counter", data);
+        counter = data
+        updatePageCounter()
+        getItem()
+
+    }
+    hackerNews()
+    async function getItem() {
+        const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${counter}.json?print=pretty`)
+        const data = await response.json()
+        console.log("Item", data);
+        const newsText = document.querySelector("p")
+        if (data.type === "story") {
+            newsText.innerHTML = ` ${data.title} - ${new Date(data.time * 1000).toDateString()}`
+        } else {
+            newsText.innerHTML = data.text
+        }
+
+
+    }
+
+    function updatePageCounter() {
+        const counterElement = document.querySelector("h2");
+        counterElement.innerText = counter;
+    }
+
+    function increment(event) {
+        console.log("The new story", event);
+        counter = counter + 1
+        updatePageCounter();
+        getItem()
+    }
+    const addButton = document.querySelector(".plusButton");
+    addButton.addEventListener("click", increment);
+
+    function decrement(event) {
+        console.log("The previous story", event);
+        counter = counter - 1
+
+
+        console.log("The new counter:", counter);
+        updatePageCounter();
+        getItem()
+    }
+
+    const minusButton = document.querySelector(".minusButton");
+    minusButton.addEventListener("click", decrement);
+
+</script>
+
+</html>

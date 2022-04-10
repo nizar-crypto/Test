@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    async function weather() {
+
+        const weatherData = await fetch("https://goweather.piratekuapp.com/weather/rotterdam")
+        const data = await weatherData.json()
+        console.log("check weather", data);
+        console.log("forecast", data.forecast[0].temperature);
+        for (let index = 0; index < data.forecast.length; index++) {
+            const weatherForecast = data.forecast[index];
+
+            const weatherElement = document.createElement("h1")
+            weatherElement.innerText = `day: ${data.forecast[index].day} , temperature: ${data.forecast[index].temperature} ,wind: ${data.forecast[index].wind}`
+            const body = document.querySelector("body")
+            body.appendChild(weatherElement)
+        }
+
+
+    }
+
+    weather()
+</script>
+
+</html>

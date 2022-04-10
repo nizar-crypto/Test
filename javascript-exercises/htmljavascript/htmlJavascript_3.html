@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .pink {
+        color: hotpink;
+        font-size: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="firstTitle" class="bigtitle">Hello world</h1>
+    <h1 class="bigtitle">Hello Nizar</h1>
+    <h1>Hello Rein</h1>
+    <h2>I WILL CHANGE SOON</h2>
+    <h2 class="pink">I HAVE CHANGED</h2>
+  </body>
+  <script>
+    // const name = "Rein";
+    // console.log("Hallo!", name);
+    // We can interact with the HTML
+    // Through "document"
+    // document is an object
+    // Has keys and values
+    // document.body -> body element of the page
+    // YOU can CRUD the document object
+    // But... you have the follow the rules
+
+    // Read
+    console.log(document.body);
+    // Most of the time:
+    // "find / get / query the right element" inside the document
+    // console.log(document.h1); // does not work
+
+    // Methods:
+    // getElement .. useful, but querySelector is easier to use
+    // const titles = document.getElementsByTagName("h1");
+    // const title = document.getElementById("firstTitle");
+    // console.log(title);
+
+    // QuerySelector
+    // - querySelectorAll -> get all
+    // - querySelector -> get the first
+    // - both use CSS "selectors" -> .class, h1, #someId
+    const titles = document.querySelectorAll("h1");
+    console.log(titles);
+    const title = document.querySelector("h1"); // gets the first element
+    console.log(title);
+    const bigTitles = document.querySelectorAll(".bigtitle");
+    console.log(bigTitles);
+
+    // Update
+    // Allways: select the element (read from the dom)
+    const smallTitle = document.querySelector("h2");
+    console.log(smallTitle);
+    // 1. update the underlying object
+    smallTitle.innerText = "I HAVE CHANGED";
+
+    // Challenge:
+    // Which keys can you use ...
+    // innerText
+    // style
+    smallTitle.style.color = "hotpink";
+    smallTitle.style.fontSize = "50px";
+
+    // Or ..
+    // 2. Call a method on the object
+    // smallTitle.remove();
+    // Challenge:
+    // What methods exist ...
+
+    // Delete
+    // Allways: select the element (read from the dom)
+    const smallTitle2 = document.querySelector("h2");
+    // Call the remove method (for instance)
+    // smallTitle2.remove();
+    // There are more methods to remove things
+
+    // Create
+    // Step 1: create new element
+    const newElement = document.createElement("h3");
+    // Step 2: update the content of the element
+    newElement.innerText = "I AM NEW!";
+    console.log(newElement);
+    // Step 3: insert this element into the document (where does it go)
+    // 3a: select an element
+    const body = document.querySelector("body");
+    // 3b: call a method to insert it
+    body.appendChild(newElement);
+
+    // Challenge:
+    // - multiple ways to insert elements
+  </script>
+</html>

@@ -1,0 +1,57 @@
+* {
+  border: 1px solid red;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  padding: 20px;
+}
+.box {
+  padding: 20px;
+  background-color: #897a5f;
+  color: white;
+  margin: 20px 0px;
+}
+
+.button_1 {
+  margin: 80px 9px 5px 2px;
+  padding: 5px 40px;
+  background-color: #2c88d9;
+  color: white;
+  cursor: pointer;
+}
+
+.topBox {
+  padding: 10px;
+  margin: 50px 0px;
+  background-color: #2c88d9;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+}
+.newProject-title-box {
+  padding: 10px;
+  margin: 50px 0px;
+  background-color: #2c88d9;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+}
+.retired-project-title-box {
+  padding: 10px;
+  margin: 50px 0px;
+  background-color: #2c88d9;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+}
+
+.container {
+  display: flex;
+  align-items: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

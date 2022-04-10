@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="draft.css">
+</head>
+
+<body>
+    <h2 class="topBox"> popular projects</h2>
+    <div class="container">
+
+
+        <div class="box">
+            Name: Hatity <br>
+            Donors:44 <br>
+            Money raised: € 1542 <br>
+
+
+            <button class="button_1">Donate to:FI15878157057686073</button>
+            '
+        </div>
+        <div class="box">
+            Name: Flexidy <br>
+            Donors:43 <br>
+            Money raised: € 5896 <br>
+
+            <button class="button_1">Donate to:FI15878157057686073</button>
+            '
+        </div>
+
+
+        <div class="box">
+            Name: Bigtax <br>
+            Donors:42 <br>
+            Money raised: € 1476 <br>
+
+            <button class="button_1">Donate to:FI15878157057686073</button>
+            '
+        </div>
+        <div class="box">
+            Name: Trippledex <br>
+            Donors:35 <br>
+            Money raised: € 6229 <br>
+
+            <button class="button_1">Donate to:FI15878157057686073</button>
+            '
+        </div>
+
+    </div>
+    <h2 class="newProject-title-box"> New projects</h2>
+    <div class="new-project-section">
+
+
+    </div>
+    <h2 class="retired-project-title-box"> Retired projects</h2>
+    <div class="retired-projects">
+
+    </div>
+
+
+
+</body>
+<script>
+    // -Add all data of project and store it in a variable
+    // -Do the filter data transformation
+    // -take one object and turned into a new element and add it to the page
+    //  choose one element and store into a variable
+    //  create an element
+    //  add classes into an element
+    //  update the content of the element
+    //  select the element where should be go
+    //  append
+    // 
+    // -Do the loop and added to all filttered projects
+    //Also add the buttons
+    const projects = [
+        {
+            project: "Tres-Zap",
+            country: "China",
+            donateIban: "FR17 3912 7853 73RV G0QO DGKH N65",
+            donationAmount: 5774,
+            supporters: 28,
+            active: false,
+        },
+        {
+            project: "Hatity",
+            country: "Belgium",
+            donateIban: "FI58 7815 7057 6806 73",
+            donationAmount: 1542,
+            supporters: 44,
+            active: true,
+        },
+        {
+            project: "Flexidy",
+            country: "Indonesia",
+            donateIban: "BA38 9986 8076 1906 1363",
+            donationAmount: 5896,
+            supporters: 43,
+            active: true,
+        },
+        {
+            project: "Domainer",
+            country: "Russia",
+            donateIban: "SI68 2039 7747 4963 574",
+            donationAmount: 3667,
+            supporters: 13,
+            active: true,
+        },
+        {
+            project: "Alpha",
+            country: "Poland",
+            donateIban: "MD36 FFII 5KGW YCCD TPCM HZRD",
+            donationAmount: 5360,
+            supporters: 15,
+            active: false,
+        },
+        {
+            project: "Vagram",
+            country: "China",
+            donateIban: "NL06 JBIN 0005 8741 18",
+            donationAmount: 6269,
+            supporters: 15,
+            active: true,
+        },
+        {
+            project: "Bigtax",
+            country: "Tanzania",
+            donateIban: "DO71 0XUZ 4405 0789 0632 8584 5323",
+            donationAmount: 1476,
+            supporters: 42,
+            active: true,
+        },
+        {
+            project: "Trippledex",
+            country: "Portugal",
+            donateIban: "BA96 2331 2755 2934 8254",
+            donationAmount: 6229,
+            supporters: 35,
+            active: true,
+        },
+        {
+            project: "Bitchip",
+            country: "Poland",
+            donateIban: "GR36 7035 385T DVRS YEMG I7QN T76",
+            donationAmount: 42,
+            supporters: 3,
+            active: true,
+        },
+        {
+            project: "Trippledex",
+            country: "China",
+            donateIban: "FO18 4681 3187 5928 35",
+            donationAmount: 4087,
+            supporters: 8,
+            active: false,
+        },
+    ];
+
+    const project = projects[0]
+    console.log("check", project);
+    const popularProjects = projects.filter((project) => {
+        console.log("project", project, project.supporters >= 30);
+        return project.supporters >= 30
+    })
+    for (let index = 0; index < popularProjects.length; index++) {
+        const project = popularProjects[index];
+
+        console.log("check popularProjects", popularProjects);
+
+        const projectElement = document.createElement("div");
+        const nameElement = document.createElement("p");
+        const donorElement = document.createElement("p")
+        const MoneyElement = document.createElement("p");
+        const sendButton = document.createElement("button");
+
+        nameElement.innerText = `Name ${project.project}`
+        donorElement.innerText = `Donors: ${project.supporters}`
+        MoneyElement.innerText = `Money raised : €${project.donationAmount}`
+        sendButton.innerText = "Send money!";
+
+        projectElement.appendChild(nameElement)
+        projectElement.appendChild(donorElement)
+        projectElement.appendChild(MoneyElement)
+        projectElement.appendChild(sendButton)
+
+        projectElement.classList = "box"
+
+        // `${crypto.name} - Price: $${parseInt(crypto.priceUsd)} - UP / DOWN ${parseFloat(crypto.changePercent24Hr).toFixed(2)} %`;
+
+        // projectElement.innerText = `Name ${project.project} , Donors: ${project.supporters} ,Money raised : €${project.donationAmount}`
+        //here we made p and break the template string into thier elements
+
+        const boxContainer = document.querySelector(".container")
+        boxContainer.appendChild(projectElement)
+    }
+
+
+    const newProjects = projects.filter((project) => {
+        // console.log("New project", newProjects, project.supporters < 30);
+        return project.supporters < 30
+    })
+    console.log(newProjects);
+    for (let index = 0; index < newProjects.length; index++) {
+        const project = newProjects[index];
+
+        console.log("check new project", newProjects);
+
+        const projectElement = document.createElement("div");
+        const nameElement = document.createElement("p");
+        const donorElement = document.createElement("p")
+        const MoneyElement = document.createElement("p");
+        const sendButton = document.createElement("button");
+
+        nameElement.innerText = `Name ${project.project}`
+        donorElement.innerText = `Donors: ${project.supporters}`
+        MoneyElement.innerText = `Money raised : €${project.donationAmount}`
+        sendButton.innerText = "Send money!";
+
+        projectElement.appendChild(nameElement)
+        projectElement.appendChild(donorElement)
+        projectElement.appendChild(MoneyElement)
+        projectElement.appendChild(sendButton)
+
+        projectElement.classList = "box"
+
+        const newProjectContainer = document.querySelector(".new-project-section")
+        newProjectContainer.appendChild(projectElement)
+    }
+
+    const retiredProjects = projects.filter((project) => {
+        console.log("check retired", project.active === false);;
+        return project.active === false
+    })
+    console.log(retiredProjects);
+
+    for (let index = 0; index < retiredProjects.length; index++) {
+        const project = retiredProjects[index];
+
+        console.log("check new project", retiredProjects);
+
+
+        const projectElement = document.createElement("div")
+        const nameElement = document.createElement("p")
+
+        nameElement.innerText = `Name:${project.project}`
+
+
+        projectElement.appendChild(nameElement)
+
+        projectElement.classList = "box"
+
+        const retiredProjectContainer = document.querySelector(".retired-projects")
+        retiredProjectContainer.appendChild(projectElement)
+    }
+
+
+</script>
+
+</html>

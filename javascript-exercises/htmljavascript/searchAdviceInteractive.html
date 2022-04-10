@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Advice App</h1>
+    <input type="text" />
+    <button>Search!</button>
+    <!-- Display the results here ... -->
+</body>
+<script>
+    //   0. Get an api that supports search
+    //   1. X Make the user interface, input & button (we already did it)
+    //   2. X We need to add an event listener to the button
+    //   3. We need to write an event handler (function)
+    //    - X Should take text written in the input field
+    //      - X Select the input field
+    //      - X Take the value from the input field
+    //    - X Make a request to the api, and send the search term (userinput)
+    //    - X Get response from the api with the search results
+    //    - X Display the search results
+    //   4. Clear advice from the previous search
+
+    // https://api.adviceslip.com/advice/search/food
+    function clearAdvice() {
+        const paragraphs = document.querySelectorAll("p");
+
+        //   for (let index = 0; index < paragraphs.length; index++) {
+        //     const element = paragraphs[index];
+        //     element.remove();
+        //   }
+
+        paragraphs.forEach((paragraphElement) => {
+            paragraphElement.remove();
+        });
+    }
+    async function getAdvice() {
+        clearAdvice();
+        //   console.log("GET ADVICE HERE!");
+        const inputElement = document.querySelector("input");
+        //   console.log("GET WHAT THE USER TYPED IN:", inputElement.value);
+        const response = await fetch(
+            `https://api.adviceslip.com/advice/search/${inputElement.value}`
+        );
+        const data = await response.json();
+
+        //   console.log("ADVICE:", data.slips);
+
+        data.slips.forEach((slip) => {
+            // console.log("ONE SLIP", slip);
+            const adviceElement = document.createElement("p");
+            adviceElement.innerText = slip.advice;
+            document.querySelector("body").appendChild(adviceElement);
+        });
+    }
+
+    const button = document.querySelector("button");
+    button.addEventListener("click", getAdvice);
+</script>
+
+</html>

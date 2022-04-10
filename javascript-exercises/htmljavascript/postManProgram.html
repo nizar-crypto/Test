@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <button>Search</button>
+
+    <input type="text" class="update-input">
+    <button class="update">update</button>
+
+</body>
+<script>
+    console.log("Hello");
+    // async function getBin() {
+    //     const response = await fetch("https://api.jsonbin.io/v3/c/uncategorized/bins",
+    //         { method: "Get", headers: { "X-Master-Key": "$2b$10$bwU5Ev4g61K0CcWTkG5e3uAt5CHBihEk3Y0B8SFCiJfsC3y9FengC" } })
+    //     console.log("check response", response);
+    //     const data = await response.json()
+    //     for (let index = 0; index < data.length; index++) {
+    //         const name = data[index];
+    //         console.log("check array", name.record);
+
+    //         console.log("check data", data);
+
+    //         const getElement = document.createElement("p");
+    //         getElement.innerText = name.record
+    //         document.querySelector("body").appendChild(getElement)
+    //     }
+
+    // }
+    // const Button = document.querySelector("button");
+    // Button.addEventListener("click", getBin)
+
+    async function getBin() {
+        const response = await fetch("https://api.jsonbin.io/v3/b/61692d66aa02be1d4459b1a3",
+            { method: "Get", headers: { "X-Master-Key": "$2b$10$bwU5Ev4g61K0CcWTkG5e3uAt5CHBihEk3Y0B8SFCiJfsC3y9FengC" } })
+        console.log("check response", response);
+        const data = await response.json()
+
+        // console.log("check array", name.record);
+
+        console.log("check data", data.record.name);
+
+        const getElement = document.createElement("p");
+        getElement.innerText = data.record.name
+        document.querySelector("body").appendChild(getElement)
+
+
+    }
+    const Button = document.querySelector("button");
+    Button.addEventListener("click", getBin)
+
+
+    async function updateBin() {
+        const inputElement = document.querySelector(".update-input")
+        console.log("check the input", inputElement.value);
+        console.log("check input element", inputElement);
+        const response = await fetch("https://api.jsonbin.io/v3/b/61692d66aa02be1d4459b1a3",
+            { method: "PUT", headers: { "Content-Type": "application/json", "X-Master-Key": "$2b$10$bwU5Ev4g61K0CcWTkG5e3uAt5CHBihEk3Y0B8SFCiJfsC3y9FengC" }, body: JSON.stringify({ name: `${inputElement.value}` }), })
+        console.log("check response", response);
+        const data = await response.json()
+        console.log("check data", data);
+    }
+    // updateBin()
+    const updateButton = document.querySelector(".update");
+    updateButton.addEventListener("click", updateBin)
+
+
+
+    // async function createBin() {
+    //     const inputElement = document.querySelector("input")
+    //     console.log("USER input", inputElement.value);
+
+    //     const response = await fetch(`https://api.jsonbin.io/v3/b`,
+    //         { method: "post", headers: { "Content-Type": "application/json", "X-Master-Key": "$2b$10$bwU5Ev4g61K0CcWTkG5e3uAt5CHBihEk3Y0B8SFCiJfsC3y9FengC" }, body: JSON.stringify({ name: `${inputElement.value}` }), })
+    //     console.log("check response", response);
+    //     const data = await response.json()
+    //     console.log("check data", data);
+    // }
+
+    // const button = document.querySelector("button");
+    // button.addEventListener("click", createBin)
+
+
+    // async function deleteBin() {
+    //     const response = await fetch("https://api.jsonbin.io/v3/b/61692d66aa02be1d4459b1a3",
+    //         { method: "delete", headers: { "Content-Type": "application/json", "X-Master-Key": "$2b$10$bwU5Ev4g61K0CcWTkG5e3uAt5CHBihEk3Y0B8SFCiJfsC3y9FengC" }, body: JSON.stringify({ name: "Nizar" }), })
+    //     console.log("check response", response);
+    //     const data = await response.json()
+    //     console.log("check data", data);
+    // }
+    // // deleteBin()
+    // // createBin()
+
+    // getBin()
+
+
+// 1 Creating a bin with user input 
+//  - make an input field for a user name and a button
+//  - add eventlistener to the button 
+//  - when the button is clicked take the value from the input field
+//  - use the value from the input field and make a post request to the json.bin API
+// (The approach if I want to check I can use postman if it works then I can do it in js)
+
+
+
+
+// 2 Update a bin with user input 
+//  - make another input field for a user name and another button
+//  - add eventlistener to the button 
+//  - when the button is clicked take the value from the input field
+//  - use the value from the input field and make a put request to the json.bin API
+
+
+// 3 get a bin and display the user name on the screen
+
+//  4 get all uncategorized bins and display their ID or record
+
+</script>
+
+</html>

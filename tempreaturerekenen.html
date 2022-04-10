@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+    <div>
+        waarde: <input id="inputWaarde" type="text" value="20" />
+        type:
+        <select id="menu">
+            <option value="c2f">Celsius naar Fahrenheit</option>
+            <option value="f2c">Fahrenheit naar Celsius</option>
+            <option value="c2k" selected>Celsius naar Kelvin</option>
+            <option value="k2c">Kelvin naar Celsius</option>
+        </select>
+        <br>
+
+    </div>
+
+    <button id="btn">Reken om</button>
+
+    <p id="uitkomst">omgerekende waarde: </p>
+
+    <script>
+        document.querySelector("#btn").addEventListener('click', getConversionFromBackend);
+
+        function getConversionFromBackend() {
+
+            let inputwaarde = document.querySelector("#inputWaarde").value;
+            let type = document.querySelector("#menu").value;
+
+            const url = "http://miw-team-0.nl:8080/tempconvert/json";
+
+            let data = { type: type, waarde: inputwaarde };
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json()) // zet response body json om naar JS object
+                .then(json => {
+                    console.log(json.waarde);
+                    // pas het element aan op de pagina
+                    document.getElementById("uitkomst").innerHTML = "omgerekende waarde: " + json.waarde;
+                })
+                .catch((error) => {
+                    console.error('Foutje', error);
+                });
+
+        }
+    </script>
+</body>
+
+</html>

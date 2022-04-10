@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .content {
+            height: 300px;
+            width: 150px;
+            background-color: rgb(144, 95, 179);
+            line-height: 25px;
+
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p>COVID TRACKER</p>
+
+
+        <div class="content">
+            <p class="confirmed"> </p>
+
+        </div>
+        <div class="flags">
+
+        </div>
+    </div>
+
+
+</body>
+<script>
+    async function covidCountry(country) {
+        const response = await fetch(`https://covid-api.mmediagroup.fr/v1/cases?country=${country}`)
+        const data = await response.json()
+        const confirmedElement = document.querySelector(".confirmed")
+        confirmedElement.innerText =
+            `confirmed ${data.All.confirmed}\n  recovered:${data.All.recovered}\n Death:${data.All.deaths} \n country:${data.All.abbreviation} \n poulation: ${data.All.population}`
+    }
+
+    async function countries() {
+
+        const response = await fetch("https://restcountries.com/v3.1/all")
+        const countries = await response.json()
+        for (let index = 0; index < countries.length; index++) {
+            const country = countries[index];
+            const flagImage = document.createElement("img")
+            flagImage.src = countries[index].flags.png
+            flagImage.style.width = "40px"
+            const body = document.querySelector("body");
+            body.appendChild(flagImage);
+            flagImage.addEventListener("click", () => covidCountry(country.name.common))
+        }
+    }
+    countries()
+</script>
+
+</html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Vult adresgevens aan samen met weerdata uit de regio</title>
+
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- formulier doet zelf niets -->
+    <form action="/ergens" method="POST">
+
+        <input type="text" id="field_pc" name="postcode" placeholder="1234AB"><br>
+        <input type="number" id="field_nr" name="huisnummer" placeholder="123" /><br>
+        <input type="text" id="field_street" name="straatnaam" placeholder="stationsweg" /><br>
+        <input type="text" id="field_city" name="woonplaats" placeholder="ergens" /><br>
+        <input type="submit">
+    </form>
+
+    <div id="error" hidden>
+        <p>postcode, huisnummer combinatie is onbekend</p>
+    </div>
+
+    <div id="weerDiv" class="hidden">
+        <p id="weerInfo"></p>
+    </div>
+
+    <script>
+        // focusout nummer postcode en huisnummer ingevuld
+        // registreer eventhandlers
+        document.querySelector('#field_pc').addEventListener('focusout', checkForAddressPart);
+
+        document.querySelector('#field_nr').addEventListener('focusout', checkForAddressPart);
+
+        function checkForAddressPart() {
+            let regex = new RegExp(/^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i);
+
+            // velden moeten niet leg zijn, liefst regex
+            let postcode = document.querySelector('#field_pc').value
+            let huisnummer = document.querySelector('#field_nr').value
+
+            // als postcode een valide postcode is nummer niet leeg, dan
+            console.log('pc is valide: ' + regex.test(postcode))
+
+            if (regex.test(postcode) && huisnummer) {
+                // var data = { postcode: postcode, nr: huisnummer};
+                // stuur data als form data ipv json, want backend accepteert alleen form
+                let formData = `postcode=${postcode}&number=${huisnummer}` //postcode=1234AB&nr=15
+
+                fetch("https://postcode.tech/api/v1/postcode/full?" + formData, {
+                    headers: {
+                        'Authorization': 'Bearer vulhierjeeigenkeyin',
+                    },
+                })
+                    .then(response => response.json())
+                    .then(json => {
+                        processAddress(json)
+                        // als we de volledige adresgegevens hebben met lengte en breedtegraad
+                        // kunnen deze gebruikt worden om weer informatie op te halen
+                        // gebruik hiervoor bijvoorbeeld OpenWeatherMap of MeteoServer
+                        getWeather(json.geo.lat, json.geo.lon)
+                    })
+                    .catch((error) => { console.error('Foutje', error) });
+            }
+
+        }
+
+        function getWeather(lat, long) {
+            fetch(`https://data.meteoserver.nl/api/liveweer.php?lat=${lat}&long=${long}&key=vulhierjeeigenkeyin`)
+                .then(response => response.json()) // waar je response mee controleert
+                .then(data => {
+                    console.log(data)
+                    if (data) showWeather(data)
+                }
+                )
+        }
+
+        function showWeather(data) {
+            // als je MeteoSever gebruikt, even goed opletten hoe de response eruit zit, in liveweer zit een array met op index 0 de data
+            if (data.liveweer) {
+                let weer = data.liveweer[0]
+                console.log(weer)
+                // laat weer div zien
+                document.querySelector('#weerDiv').classList.remove('hidden')
+                document.querySelector('#weerInfo').innerHTML = `plaats: ${weer.plaats} temp: ${weer.temp} samenvatting: ${weer.samenv} windkracht: ${weer.windbft}`
+            }
+        }
+
+        function processAddress(data) {
+            console.log(data)
+
+            document.querySelector('#error').style.display = 'none';
+            // haal de data uit de request
+            let addressPart = data; // de data is in ASCII format, nu nog naar object omzetten
+            // velden vullen
+            document.querySelector('#field_city').value = addressPart.city; // zonder validatie
+            document.querySelector('#field_street').value = addressPart.street; // zonder validatie
+
+            // error style weghalen
+            document.querySelector('#field_pc').classList.remove('error');
+            document.querySelector('#field_nr').classList.remove('error');
+        }
+
+    </script>
+</body>
+
+</html>

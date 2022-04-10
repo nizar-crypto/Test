@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <button>Click me!</button>
+</body>
+<script>
+    //  1. We are going to make a button X
+    //  2. We are going to make function in JavaScript X
+    //   - Make the function do something X
+    //  3. When someone clicks the button, we are going to call our function
+    //   - X select the button with querySelector
+    //   - add and Event Listener
+    //   - add an Event Handler
+
+    function showGreeting() {
+        const helloElement = document.createElement("h1");
+        helloElement.innerText = "Hello World";
+        const body = document.querySelector("body");
+        body.appendChild(helloElement);
+    }
+
+    const button = document.querySelector("button");
+    button.addEventListener("click", showGreeting); // click -> showGreeting()
+</script>
+
+</html>

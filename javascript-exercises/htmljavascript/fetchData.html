@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body></body>
+<script>
+    // 1. using function
+    // 2. manipulate the DOM -> create elements
+    // 3. how to get data from the internet
+    // - learn .. what is a server?
+    //  -  computer and a program, manages information exchange between clients / people
+    // - what is an API ...
+    //  - The server has differen "doors" which can knock for data
+    //  - Some doors are open, some are closed (you need a password first)
+    //  - Some doors accept message
+    //  - Some only allow you to request data
+    //  - "Specific" way to interact the server - interface
+    //  - Application (the server is a program)
+    //  - Programming (because we are using code to talk to it)
+    //  - Interface
+    //  - API (how do you communicate with this server)
+    //  - Read the docs
+    //  - API: CRUD
+    //  - Create: POST
+    //  - Read: GET
+    //  - Update: PUT / PATCH
+    //  - Destroy: DELETE
+    // - async function (why)
+    //  - return Promises
+    //  - Promises can fulfilled or rejected
+    //  - They take a while
+    //  - "Exchange" your Promise for the values you want
+    // - use fetch() ->
+    //  - async function
+    //  - returns a promise
+    //  - use it to make a request
+    // - await the response from the server (the internet takes a while)
+    // - turn out reponse into javascript objects / arrays
+
+    // function getGreeting() {
+    //   return "Hello World";
+    // }
+
+    // const whatIsThis = getGreeting();
+    // console.log("WHAT IS THIS:", whatIsThis);
+
+    async function getCryptoPrices() {
+        // gives a promise ...
+        //   const response = fetch("https://api.coincap.io/v2/assets");
+        //   console.log("WHAT IS THIS:", response);
+
+        // exchanges the promise for the data by adding await
+        const response = await fetch(
+            "https://api.coingecko.com/api/v3/exchange_rates"
+        );
+        //   console.log("WHAT IS THIS:", response);
+
+        const data = await response.json(); // turn json into objects / arrays here
+        console.log(
+            "WHAT IS THIS?",
+            data,
+            data.rates.btc,
+            data.rates.eth,
+            data.rates.eur,
+            data.rates.usd
+        );
+
+        // put stuff in the document
+    }
+
+    getCryptoPrices();
+</script>
+
+</html>

@@ -1,0 +1,41 @@
+{
+"color_fur":"white",
+"species":"shirazi",
+"color_eyes":"green-blue",
+"kittens":["Bella", "Cookie"],
+"female":true,
+"age":2
+}
+
+
+
+
+
+
+{
+    "name":"Nizar",
+    "age":39,
+    "has-a-children":true,
+    "howMany":"1 daughter",
+    "study":["literatre","programming"],
+    "placeOfBirth":{
+        "country":"syria",
+        "city":"damascus"
+    },
+    "address":{
+        "country":"the netherland",
+
+    },
+    "work":null
+
+}
+
+{
+ "city":"Weesp",
+ "inhabitants":20546,
+ "train-station":true,
+ "destaniation":["Amsterdam","Diemen","Weesp"],
+ "hospital":null,
+ "area-phone-code":"+31294"
+
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>How many programs did I write today</h1>
+    <h2></h2>
+    <button class="plusButton">+</button>
+    <button class="minusButton">-</button>
+</body>
+<script>
+    // Making the page dynamic
+    // - We need state
+    let counter = 7;
+    // - Take the state and update the document with it
+    function updatePageCounter() {
+        const counterElement = document.querySelector("h2");
+        counterElement.innerText = counter;
+    }
+
+    updatePageCounter();
+
+    // Make the page interactive
+    // Add
+    // - Write a function for increment the counter (add 1)
+    // - do math? (determine the next number using the state)
+    // - Add event listener / handler (click)
+
+    function increment(event) {
+        console.log("WHAT IS EVENT", event);
+        console.log("SHIFTKEY PRESSED?", event.shiftKey);
+        if (event.shiftKey === true) {
+            counter = counter + 5;
+        } else {
+            counter = counter + 1;
+        }
+        //   console.log("NEW COUNTER SHOULD BE:", counter);
+        updatePageCounter();
+    }
+
+    const addButton = document.querySelector(".plusButton");
+    addButton.addEventListener("click", increment);
+
+    // Subtract
+    // - Wtite a function decrementing the counter (subtract 1)
+    // - do math? (determine the next number using the state)
+    // - Add event listener / handler (click)
+
+    function decrement(e) {
+        if (e.altKey === true) {
+            counter = counter - 5;
+        } else {
+            counter = counter - 1;
+        }
+        //   console.log("NEW COUNTER SHOULD BE:", counter);
+        updatePageCounter();
+    }
+
+    const minusButton = document.querySelector(".minusButton");
+    minusButton.addEventListener("click", decrement);
+
+    // If you hold down the shift button while clicking
+    // + -> +5
+    // - -> -5
+</script>
+
+</html>

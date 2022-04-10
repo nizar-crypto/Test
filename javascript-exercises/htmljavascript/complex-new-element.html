@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container"></div>
+</body>
+<script>
+    const wallets = [
+        {
+            walletId: "15wJnVWxHW1bGK7oRErARZjuJdqvKhJdEN",
+            first_name: "Parker",
+            last_name: "Filippo",
+            email: "pfilippo0@yahoo.com",
+            balance: 45.55,
+            ip_address: "193.149.16.215",
+        },
+        {
+            walletId: "1NoXtjfctfD7Nik22MbjygVdvkFZJfpzXE",
+            first_name: "Jorrie",
+            last_name: "Empson",
+            email: "jempson1@ucoz.ru",
+            balance: 24.13,
+            ip_address: "46.183.83.114",
+        },
+        {
+            walletId: "18pREDsEPeZsYAabWNStSC7e4h7DSBoyXy",
+            first_name: "Ely",
+            last_name: "Ilett",
+            email: "eilett2@hud.gov",
+            balance: 22.67,
+            ip_address: "253.35.252.223",
+        },
+    ];
+
+    /*
+        <div>Name: Spencer - 24.53</div>
+    */
+    // for (let index = 0; index < wallets.length; index++) {
+    //   const wallet = wallets[index];
+
+    //   const walletElement = document.createElement("div");
+
+    //   walletElement.innerText = `Name: ${wallet.first_name} - ${wallet.balance}`;
+
+    //   const container = document.querySelector(".container");
+
+    //   container.appendChild(walletElement);
+    // }
+
+    /*
+        <div> 
+            <p>Name: Spencer</p> 
+            <p>Balance: 24.53</p>
+            <button class="sendMoney">Send money!</button>
+        </div>
+    */
+
+    for (let index = 0; index < wallets.length; index++) {
+        const wallet = wallets[index];
+
+        // Create all elements
+        const walletElement = document.createElement("div");
+        const nameElement = document.createElement("p");
+        const balanceElement = document.createElement("p");
+        const sendButton = document.createElement("button");
+
+        // First set the content for the elements
+        nameElement.innerText = `Name: ${wallet.first_name}`;
+        // <p>Name: Spencer</p>
+        balanceElement.innerText = `Balance: ${wallet.balance}`;
+        // <p>Balance: 24.53</p>
+        sendButton.innerText = "Send money!";
+        sendButton.classList = "sendMoney";
+        // <button class="sendMoney">Send money!</button>
+        //   console.log("NAME:", nameElement);
+        //   console.log("BALANCE", balanceElement);
+        //   console.log("BUTTON", sendButton);
+
+        // Append the elements to the div second
+        walletElement.appendChild(nameElement);
+        walletElement.appendChild(balanceElement);
+        walletElement.appendChild(sendButton);
+        //   <div>
+        //         <p>Name: Spencer</p>
+        //         <p>Balance: 24.53</p>
+        //         <button class="sendMoney">Send money!</button>
+        //   </div>
+
+        // Find the container
+        const container = document.querySelector(".container");
+        // Append the ENTIRE div with all the elements inside
+        container.appendChild(walletElement);
+        // <div class="container">
+        //   <div>
+        //         <p>Name: Spencer</p>
+        //         <p>Balance: 24.53</p>
+        //         <button class="sendMoney">Send money!</button>
+        //   </div>
+        // <div>
+    }
+
+    // In the future using React
+
+    /*
+    function Wallet(){
+        const data = {
+            walletId: "18pREDsEPeZsYAabWNStSC7e4h7DSBoyXy",
+            first_name: "Ely",
+            last_name: "Ilett",
+            email: "eilett2@hud.gov",
+            balance: 22.67,
+            ip_address: "253.35.252.223",
+        }
+  
+        return (
+            <div>
+                <p>Name {data.first_name}</p>
+                <p>Balance {data.balance}</p>
+                <button class="sendMoney">Send money!<button>
+            <div>
+        )
+    }
+    */
+</script>
+
+</html>

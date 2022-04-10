@@ -1,0 +1,62 @@
+<button id="btnGo">Klik om de berichten te zien</button>
+<button id="btnRemove">Klik om de berichten te verwijderen</button>
+<div id="mainContainer"></div>
+<script>
+    const messages = [
+        {
+            title: "Titel 1",
+            content: "De inhoud",
+            createdAt: "2021-03-21T18:09:01.417549"
+        },
+        {
+            title: "Titel 2",
+            content: "Ook inhoud",
+            createdAt: "2021-03-21T18:09:01.417971"
+        },
+        {
+            title: "Titel 3",
+            content: "Nog meer inhoud",
+            createdAt: "2021-03-21T18:09:01.417982"
+        },
+        {
+            title: "Titel 4",
+            content: "Nog veel meer inhoud",
+            createdAt: "2021-03-21T18:09:01.41799"
+        }
+    ]
+    // selecter btnGo en  mainContainer, creëer en voeg children toe
+    document.querySelector("#btnGo").addEventListener('click', render)
+    // loopt door array en maakt elementen
+    function render() {
+        const mainContainer = document.querySelector("#mainContainer")
+        // itereer over array
+        messages.forEach(item => {
+            // div
+            let msgContainer = document.createElement("div")
+            msgContainer.classList.add("msg-container")
+            mainContainer.appendChild(msgContainer)
+            // title
+            let pTitle = document.createElement("p")
+            pTitle.classList.add("msg-title", "item")
+            pTitle.innerHTML = item.title
+            msgContainer.appendChild(pTitle)
+            // content
+            let pContent = document.createElement("p")
+            pContent.classList.add("msg-content", "item")
+            pContent.innerHTML = item.content
+            msgContainer.appendChild(pContent)
+            // date
+            let pDate = document.createElement("p")
+            pDate.classList.add("msg-date", "item")
+            const date = new Date(item.createdAt) // Javascript Date object maken van de UTC date string
+            pDate.innerHTML = date.toLocaleDateString()
+            msgContainer.appendChild(pDate)
+        })
+    }
+
+    // om berichten weg te halen
+    document.querySelector("#btnRemove").addEventListener('click', () => {
+        const mainContainer = document.querySelector("#mainContainer")
+        mainContainer.querySelectorAll("*").forEach(node => node.remove())
+    })
+</script>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>BITCOIN WALLETS</h1>
+  <!-- displaying the first_name of 1 user X-->
+  <!-- displaying the balance of 1 user -->
+  <!-- etc .. for 1 user -->
+  <!-- wallets[0] -->
+
+  <!-- Do it for all users -->
+</body>
+<script>
+  const wallets = [
+    {
+      walletId: "15wJnVWxHW1bGK7oRErARZjuJdqvKhJdEN",
+      first_name: "Parker",
+      last_name: "Filippo",
+      email: "pfilippo0@yahoo.com",
+      balance: 45.55,
+      ip_address: "193.149.16.215",
+    },
+    {
+      walletId: "1NoXtjfctfD7Nik22MbjygVdvkFZJfpzXE",
+      first_name: "Jorrie",
+      last_name: "Empson",
+      email: "jempson1@ucoz.ru",
+      balance: 24.13,
+      ip_address: "46.183.83.114",
+    },
+    {
+      walletId: "18pREDsEPeZsYAabWNStSC7e4h7DSBoyXy",
+      first_name: "Ely",
+      last_name: "Ilett",
+      email: "eilett2@hud.gov",
+      balance: 22.67,
+      ip_address: "253.35.252.223",
+    },
+    {
+      walletId: "1HJvS7C3LhepKB6Yy2avpjt9RPFWv19FoA",
+      first_name: "Kassi",
+      last_name: "Spickett",
+      email: "kspickett3@umich.edu",
+      balance: 19.61,
+      ip_address: "76.95.133.53",
+    },
+    {
+      walletId: "1Gyze6EmWhqLrC7BBtdQCptsg26rmHadA8",
+      first_name: "Nickie",
+      last_name: "Stanyard",
+      email: "nstanyard4@ed.gov",
+      balance: 14.35,
+      ip_address: "8.18.92.123",
+    },
+    {
+      walletId: "1HjD3Uo2HkgEaLhsbmYdHGJev3VUFyqLHP",
+      first_name: "Ferdinanda",
+      last_name: "Wanden",
+      email: "fwanden5@woothemes.com",
+      balance: 99.68,
+      ip_address: "254.204.54.76",
+    },
+    {
+      walletId: "1EsBagXkZa9erRhjxNoBXVdZFsFbPqrcFw",
+      first_name: "Grazia",
+      last_name: "Grebert",
+      email: "ggrebert6@ameblo.jp",
+      balance: 29.93,
+      ip_address: "241.48.126.194",
+    },
+    {
+      walletId: "1NmWFHfjgPcEiBponZghgVS8NcTmgENr9P",
+      first_name: "Chloette",
+      last_name: "Ranyelld",
+      email: "cranyelld7@mit.edu",
+      balance: 27.42,
+      ip_address: "27.158.174.68",
+    },
+    {
+      walletId: "1DVAJtsHEjuBqCeCAt7Qjkp44a5brWig2a",
+      first_name: "Mellisent",
+      last_name: "Cuell",
+      email: "mcuell8@lycos.com",
+      balance: 39.45,
+      ip_address: "153.154.204.157",
+    },
+    {
+      walletId: "1EMY6NFF5R7hs88ha7MSuWp32d7RnCAy6B",
+      first_name: "Flss",
+      last_name: "Hofner",
+      email: "fhofner9@omniture.com",
+      balance: 59.56,
+      ip_address: "220.156.123.166",
+    },
+  ];
+  console.log(wallets[0]);
+  for (let index = 0; index < wallets.length; index++) {
+    const wallet = wallets[index];
+    console.log("check", wallet);
+    const walletElement = document.createElement("h1");
+
+    console.log(walletElement);
+    walletElement.classList = "blue";
+
+    // const walletContainer = document.querySelector("h1") you cant add h1 in h1
+
+    walletElement.innerText = `${wallet.walletId} ,
+    ${wallet.first_name},${wallet.last_name} ,${wallet.email},${wallet.balance},${wallet.ip_address}`
+
+    const body = document.querySelector("body")
+    console.log(body);
+
+    body.appendChild(walletElement)
+  }
+</script>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    async function phrases() {
+        const quotes = await fetch("https://api.quotable.io/random")
+        console.log("fetch the quote", quotes);
+        const data = await quotes.json()
+        console.log("the quote is", data);
+        console.log("content", data.content, data.author);
+        const quoteElement = document.createElement("h1")
+        // const autorhElement = document.createElement("h2")
+        // authorElement.innerText = data.author
+
+        quoteElement.innerText = data.content, data.author
+        const body = document.querySelector("body")
+        body.appendChild(quoteElement)
+        // body.appendChild(authorhElement)
+
+    }
+    phrases()
+</script>
+
+</html>
